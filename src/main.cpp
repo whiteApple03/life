@@ -45,6 +45,17 @@ void get_map_from_user(Map& map)
     }
 }
 
+void print_field(Map& map)
+{
+    for (int i = 0; i < map.sizeY; i++) {
+        std::cout << "|\t";
+        for (int k = 0; k < map.sizeX; k++) {
+            std::cout << map.field[i][k] << "\t";
+        }
+        std::cout << "|\n";
+    }
+}
+
 int main()
 {
     Map MyMap;
