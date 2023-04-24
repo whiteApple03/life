@@ -29,7 +29,7 @@ void get_map_from_user(Map& map)
     map.sizeY = 9;
     allocate_memory_for_field(map);
     std::cout << "Введите живую клетку в формате: X,Y\nЧтобы закончить ввод "
-                 "введите '-1'";
+                 "введите '-1'\n";
     std::string input;
 
     while (true) {
@@ -40,8 +40,8 @@ void get_map_from_user(Map& map)
         if (coords.first == -2)
             break;
         coords.second = get_int(input, i) - 1;
-        map.field[coords.first][coords.second]
-                = !map.field[coords.first][coords.second];
+        map.field[coords.second][coords.first]
+                = !map.field[coords.second][coords.first];
     }
 }
 
@@ -58,7 +58,8 @@ void print_field(Map& map)
 
 int main()
 {
-    Map MyMap;
-
+    Map my_map;
+    get_map_from_user(my_map);
+    print_field(my_map);
     return 0;
 }
