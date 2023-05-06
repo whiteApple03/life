@@ -1,10 +1,13 @@
 #include <ctest.h>
+#include <iostream>
 
 #include <Map.hpp>
 #include <input.hpp>
 #include <logics.hpp>
 
-CTEST(logic, createmap)
+Map field = {9, 9};
+
+void create_field()
 {
     bool map[9][9]
             = {{0, 1, 0, 0, 0, 0, 0, 0, 0},
@@ -13,11 +16,27 @@ CTEST(logic, createmap)
                {1, 0, 1, 0, 0, 0, 0, 0, 0},
                {0, 1, 0, 0, 0, 0, 0, 0, 0},
                {0, 0, 0, 0, 0, 0, 0, 0, 0},
-               {0, 0, 0, 0, 0, 0, 0, 0, 0},
-               {0, 0, 0, 0, 0, 0, 0, 0, 0},
-               {0, 0, 0, 0, 0, 0, 0, 0, 0}};
-    Map field = {9, 9};
-		allocate_memory_for_field(field);
-		field.field = (bool**)map;
-		
+               {0, 0, 0, 0, 0, 1, 1, 1, 0},
+               {0, 0, 0, 0, 0, 1, 0, 1, 0},
+               {0, 0, 0, 0, 0, 1, 1, 1, 0}};
+    allocate_memory_for_field(field);
+    for (int i = 0; i < field.sizeY; i++) {
+        for (int k = 0; k < field.sizeX; k++) {
+            field.field[i][k] = map[i][k];
+        }
+    }
+}
+
+CTEST(logic, createmap)
+{
+    create_field();
+}
+
+CTEST(logic, countlivecell)
+{
+    ASSERT_EQUAL(8, counting_live_cells(field, 7, 6));
+    ASSERT_EQUAL(2, counting_live_cells(field, 2, 2));
+    ASSERT_EQUAL(2, counting_live_cells(field, 5, 5));
+    ASSERT_EQUAL(0, counting_live_cells(field, 0, 8));
+    ASSERT_EQUAL(2, counting_live_cells(field, 0, 0));
 }
