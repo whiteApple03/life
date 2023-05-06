@@ -5,7 +5,9 @@
 
 #include <Map.hpp>
 
-int counting_live_cells(Map& map, int& i, int& k)
+template<typename T1, typename T2>
+
+int counting_live_cells(Map& map, T1 i, T2 k)
 {
     int count = 0;
     if (i > 0) {
@@ -34,6 +36,7 @@ int counting_live_cells(Map& map, int& i, int& k)
     }
     return count;
 }
+
 
 void change_state(Map& map)
 {

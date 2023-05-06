@@ -10,9 +10,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE includes/database includes)
 
 # ****** CTESTS ******
 
-add_executable(test ./tests/main.cpp)
+add_executable(test ./tests/main.cpp ./src/input.cpp ./src/logics.cpp ./tests/tests.cpp)
 
-target_include_directories(test PRIVATE thirdparty)
+target_include_directories(test PRIVATE thirdparty includes/database includes)
 
 add_test(NAME test COMMAND test)
 
