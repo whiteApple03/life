@@ -17,3 +17,5 @@ target_include_directories(test PRIVATE thirdparty includes/database includes)
 add_test(NAME test COMMAND test)
 
 
+find_package(SFML REQUIRED COMPONENTS system window graphics  )
+target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)
