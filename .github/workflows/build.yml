@@ -11,7 +11,8 @@ jobs:
 
       - name: Check codestyle
         run: git ls-files *.{c,h} | xargs clang-format -i --verbose && git diff --exit-code
-
+      - name: install SFML
+        run: sudo apt-get install libsfml-dev
       - name: Build makefile
         run: cmake .
       - name: build project
