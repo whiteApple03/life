@@ -7,6 +7,7 @@
 
 void allocate_memory_for_field(Map& map)
 {
+    std::cout << "helll;\n";
     map.field = new bool*[map.sizeY];
     for (int i = 0; i < map.sizeY; i++)
         map.field[i] = new bool[map.sizeX];

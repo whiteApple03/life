@@ -7,20 +7,6 @@
 #include <input.hpp>
 #include <logics.hpp>
 
-void game_procces(Map& map)
-{
-    char answer;
-    print_field(map);
-
-    do {
-        std::cout << "next step?(y/n): ";
-        std::cin >> answer;
-        change_state(map);
-        print_field(map);
-        std::cout << '\n' << answer;
-
-    } while (answer == 'y');
-}
 
 int main()
 {
