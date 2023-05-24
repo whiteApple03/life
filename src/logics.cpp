@@ -3,76 +3,73 @@
 #include <string>
 #include <vector>
 
-#include <Map.hpp>
+#include <Game.hpp>
 
-template<typename T1, typename T2>
-
-int counting_live_cells(Map& map, T1 i, T2 k)
+template <typename T1, typename T2>
+int Game::Logic::counting_live_cells(Game::Field_t& field, T1 i, T2 k)
 {
     int count = 0;
     if (i > 0) {
-        count += map.field[i - 1][k];
+        count += field.field[i - 1][k];
     }
     if (k > 0) {
-        count += map.field[i][k - 1];
+        count += field.field[i][k - 1];
     }
-    if (i < map.sizeX - 1) {
-        count += map.field[i + 1][k];
+    if (i < field.sizeY - 1) {
+        count += field.field[i + 1][k];
     }
-    if (k < map.sizeY - 1) {
-        count += map.field[i][k + 1];
+    if (k < field.sizeX - 1) {
+        count += field.field[i][k + 1];
     }
     if (i > 0 and k > 0) {
-        count += map.field[i - 1][k - 1];
+        count += field.field[i - 1][k - 1];
     }
-    if (i < map.sizeX - 1 and k > 0) {
-        count += map.field[i + 1][k - 1];
+    if (i < field.sizeY - 1 and k > 0) {
+        count += field.field[i + 1][k - 1];
     }
-    if (i < map.sizeX - 1 and k < map.sizeY - 1) {
-        count += map.field[i + 1][k + 1];
+    if (i < field.sizeY - 1 and k < field.sizeX - 1) {
+        count += field.field[i + 1][k + 1];
     }
-    if (i > 0 and k < map.sizeY - 1) {
-        count += map.field[i - 1][k + 1];
+    if (i > 0 and k < field.sizeX - 1) {
+        count += field.field[i - 1][k + 1];
     }
     return count;
 }
 
-
-void change_state(Map& map)
+std::vector<std::pair<int, int>> Game::Logic::change_state(Game::Field_t& field)
 {
     std::vector<std::pair<int, int>> changed_cage;
-    for (int i = 0; i < map.sizeX; i++) {
-        for (int k = 0; k < map.sizeY; k++) {
+    for (int i = 0; i < field.sizeY; i++) {
+        if (i < field.sizeX - 1) {
+            int tmp_sum = ((i >= 1) ? config->live_cell_sum[i - 1] : 0) + config->live_cell_sum[i]
+                    + config->live_cell_sum[i + 1];
+            if (tmp_sum == 0) {
+                continue;
+            }
+        }
+        for (int k = 0; k < field.sizeX; k++) {
             std::pair<int, int> cur_coord;
-            if (map.field[i][k]
-                and !(counting_live_cells(map, i, k) == 2
-                      or counting_live_cells(map, i, k) == 3)) {
+            if (field.field[i][k]
+                and !(counting_live_cells(field, i, k) == 2
+                      or counting_live_cells(field, i, k) == 3)) {
                 cur_coord.first = i;
                 cur_coord.second = k;
                 changed_cage.push_back(cur_coord);
-
-            } else if (
-                    !map.field[i][k] and counting_live_cells(map, i, k) == 3) {
+            } else if (!field.field[i][k] and counting_live_cells(field, i, k) == 3) {
                 cur_coord.first = i;
                 cur_coord.second = k;
                 changed_cage.push_back(cur_coord);
             }
         }
     }
-
     for (int i = 0; i < changed_cage.size(); i++) {
-        map.field[changed_cage[i].first][changed_cage[i].second]
-                = !map.field[changed_cage[i].first][changed_cage[i].second];
-    }
-}
-
-void print_field(Map& map)
-{
-    for (int i = 0; i < map.sizeY; i++) {
-        std::cout << "|\t";
-        for (int k = 0; k < map.sizeX; k++) {
-            std::cout << map.field[i][k] << "\t";
+        field.field[changed_cage[i].first][changed_cage[i].second]
+                = !field.field[changed_cage[i].first][changed_cage[i].second];
+        if (field.field[changed_cage[i].first][changed_cage[i].second]) {
+            config->live_cell_sum[changed_cage[i].first]++;
+        } else {
+            config->live_cell_sum[changed_cage[i].first]--;
         }
-        std::cout << "|\n";
     }
+    return changed_cage;
 }
