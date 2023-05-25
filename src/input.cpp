@@ -216,7 +216,8 @@ void Game::Input::draw_settings()
         }
         int porperty_size = config->settings.property.size();
         property_text.setString(config->settings.property[porperty_size - 1]);
-        property_text.setPosition(sf::Vector2f(offsetX, offsetY + margin * (porperty_size - 1)));
+        property_text.setPosition(sf::Vector2f(
+                config->settings.offsetX, config->settings.offsetY + 100 * (porperty_size - 1)));
         property_text.setCharacterSize(
                 (config->settings.windowX / config->settings.property[porperty_size - 1].size())
                 * 2);
