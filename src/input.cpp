@@ -179,19 +179,11 @@ void Game::Input::draw_property(sf::Color color, int index)
     static sf::Text property_value;
     static sf::Font font;
 
-    install_font(property_text, 20, "../font/Ubuntu-Regular.ttf");
-    install_font(property_value, 20, "../font/Ubuntu-Regular.ttf");
+    install_font(property_text, 20, "../font/second_font.ttf");
+    install_font(property_value, 20, "../font/second_font.ttf");
     choise.setPosition(sf::Vector2f(offsetX, offsetY + margin * index));
     choise.setFillColor(color);
     config->window_settings->draw(choise);
-    sf::Text property_text;
-    sf::Text property_value;
-    sf::Font font;
-    font.loadFromFile("../font/second_font.ttf");
-    property_text.setFont(font);
-    property_text.setCharacterSize(20);
-    property_value.setFont(font);
-    property_value.setCharacterSize(20);
 
     property_text.setString(config->settings.property[index]);
     property_text.setPosition(sf::Vector2f(offsetX, offsetY + margin * index));
@@ -217,7 +209,6 @@ void Game::Input::draw_settings()
     sf::Text property_value;
     install_font(property_text, 20, "../font/second_font.ttf");
     install_font(property_value, 20, "../font/second_font.ttf");
-git 
     float offsetX = config->settings.offsetX;
     float offsetY = config->settings.offsetY;
 
