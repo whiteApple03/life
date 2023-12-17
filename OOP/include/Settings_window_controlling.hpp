@@ -4,7 +4,6 @@
 #include "Helper.hpp"
 #include "Painter.hpp"
 #include "Painter_settings.hpp"
-#include "../configurate/map_config.hpp"
 
 class Settings_window_controlling : Controlling, public Painter_settings, public Helper, Painter, Adapter {
 public:

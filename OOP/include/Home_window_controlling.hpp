@@ -1,12 +1,12 @@
-#include "../configurate/map_config.hpp"
+#include "chrono"
+
+
 #include "Controlling.hpp"
 #include "Helper.hpp"
 #include "Logic.hpp"
 #include "Painter.hpp"
 #include "Settings_renderer.hpp"
-// #include "Settings_renderer.hpp"
 
-// extern Map_config map_config;
 
 class Home_window_controlling : public Controlling, public Painter, public Helper, public Logic {
 public:
@@ -68,9 +68,11 @@ public:
 
     void Map_controlling(sf::Event& event)
     {
-        if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::O) {
-                display(change_state(map_config.field));
+        if (map_config.game_mode and !map_config.input_mode and !map_config.settings_mode) {
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::O) {
+                    display(change_state(map_config.field));
+                }
             }
         }
 
@@ -86,27 +88,7 @@ public:
         } else if (map_config.settings_mode and !map_config.game_mode and !map_config.input_mode) {
             Settings_renderer setting_renderer;
             setting_renderer.loop();
-            //     if (map_config.window_settings->isOpen()) {
-            //         static sf::Event settings_event;
-            //         while (map_config.window_settings->pollEvent(settings_event)) {
-            //             if (settings_event.type == sf::Event::Resized) {
-            //                 map_config.settings.windowX = settings_event.size.width;
-            //                 map_config.settings.windowY = settings_event.size.height;
-            //                 // map_config.settings.offsetX = map_config.settings.windowX *
-            //                 // map_config.margin; map_config.settings.offsetY =
-            //                 // map_config.settings.windowY * map_config.margin;
-            //                 sf::FloatRect visiableArea(
-            //                         0, 0, map_config.settings.windowX,
-            //                         map_config.settings.windowY);
-            //                 map_config.window_settings->setView(sf::View(visiableArea));
-            //                 draw_settings();
-            //             }
-            //             if (settings_event.type == sf::Event::Closed)
-            //                 map_config.window_settings->close();
-            //             control_settings(settings_event);
-            //         }
-            //     }
-            // }
+            // delete &setting_renderer;
         }
     }
 

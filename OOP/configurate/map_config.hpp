@@ -1,13 +1,21 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-struct Field_t {
+class Field_t {
+public:
+    ~Field_t() {
+        for(int i = 0; i < sizeY; i++) {
+            delete field[i];
+        }
+        delete field;
+    }
     int sizeX;
     int sizeY;
     bool** field;
 };
 
-struct Settings {
+class Settings {
+public:
     int windowX;
     int windowY;
     int x;
@@ -36,7 +44,7 @@ public:
     float size_cell;
     double margin = 0.1;
     sf::RenderWindow* window_p;
-    sf::RenderWindow* window_settings;
+    sf::RenderWindow* window_settings = NULL;
     int* live_cell_sum;
     Field_t field;
     Settings settings;
@@ -49,19 +57,10 @@ public:
     bool auto_change = false;
     int delay_between_changed_generations = 1000;
     int64_t cur_time;
-
-    // ~Map_config() {
-    //     clear_matrix(field.field, field.sizeY);
-    //     delete live_cell_sum;
-    //     delete &(settings.order);
-    //     delete &(settings.property);
-    // }
-private:
-    // void clear_matrix(bool **a, int n) {
-    //     for(int i = 0; i < n; i++) {
-    //         delete a[i];
-    //     }
-    // }
+    ~Map_config()
+    {
+        delete[] live_cell_sum;
+    }
 };
 
 class Storage {

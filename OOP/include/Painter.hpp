@@ -1,9 +1,5 @@
 #pragma once
 
-#include "../configurate/map_config.hpp"
-
-// extern Map_config map_config;
-
 class Painter : public Storage {
 protected:
     void print_figure(bool is_live, int coord_y, int coord_x)

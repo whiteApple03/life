@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../configurate/map_config.hpp"
 #include "./Adapter.hpp"
 #include "./Helper.hpp"
 #include "./Renderer.hpp"
@@ -19,6 +18,7 @@ public:
         map_config.window_p = &window;
 
         window_p->setPosition(sf::Vector2i(0, 0));
+        std::cout << window_p << std::endl;
 
         map_config.field.sizeX = 50;
         map_config.field.sizeY = 50;
@@ -52,9 +52,9 @@ public:
         display();
     }
 
-    // ~Map_renderer() {
-    //     delete &map_config;
-    // }
+    ~Map_renderer() {
+        std::cout << "Distructor Map_renderere : " << map_config.window_p << std::endl;
+    }
 
     void resized(int width, int height)
     {
@@ -85,11 +85,5 @@ public:
         return false;
     }
 
-    void change_color(sf::Color new_color)
-    {
-    }
 
-    void print_text(std::string text, sf::Font font)
-    {
-    }
 };

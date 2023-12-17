@@ -1,9 +1,5 @@
 #pragma once
-#include "../configurate/map_config.hpp"
-#include "Painter_settings.hpp"
 #include "Settings_window_controlling.hpp"
-
-// extern Map_config map_config;
 
 class Settings_renderer : public Settings_window_controlling {
 public:
@@ -12,18 +8,25 @@ public:
         configurate_settings();
     }
 
+    ~Settings_renderer() {
+        delete map_config.window_settings;
+    }
+
     void loop()
     {
         while (map_config.window_settings->isOpen()) {
             static sf::Event settings_event;
             if (map_config.window_settings->pollEvent(settings_event)) {
                 if (settings_event.type == sf::Event::Resized) {
-                    sf::FloatRect visiableArea(0, 0, map_config.settings.windowX, map_config.settings.windowY);
+                    sf::FloatRect visiableArea(
+                            0, 0, map_config.settings.windowX, map_config.settings.windowY);
                     map_config.window_settings->setView(sf::View(visiableArea));
                     draw_settings();
                 }
-                if (settings_event.type == sf::Event::Closed)
+                if (settings_event.type == sf::Event::Closed){
                     map_config.window_settings->close();
+                    setInputMode();
+                }
                 input_keyboard(settings_event);
             }
         }
@@ -46,5 +49,4 @@ private:
 
         draw_settings();
     }
-
 };

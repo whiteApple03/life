@@ -4,7 +4,6 @@
 #include "./include/Home_window_controlling.hpp"
 #include "./include/Map_renderer.hpp"
 
-
 int main()
 {
     int window_x = 1000;
@@ -12,7 +11,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(window_x, window_y), "SFML");
     Map_renderer game{window, window_x, window_y};
     Home_window_controlling control;
-
     while (window.isOpen()) {
         sf::Event event;
         if (window.pollEvent(event)) {
@@ -20,11 +18,11 @@ int main()
                 window.close();
                 break;
             }
-            game.check_resized(event);
-            control.menu_controlling(event);
             control.Map_controlling(event);
+            control.menu_controlling(event);
+            game.check_resized(event);
         };
         control.auto_change();
     }
-    
+    return 0;
 }

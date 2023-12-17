@@ -2,8 +2,6 @@
 
 #include "../configurate/map_config.hpp"
 
-// extern Map_config map_config;
-
 class Logic : public Storage {
 protected:
     template <typename T1, typename T2>

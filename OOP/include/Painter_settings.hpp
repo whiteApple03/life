@@ -3,8 +3,6 @@
 
 #include "../configurate/map_config.hpp"
 
-// extern Map_config map_config;
-
 class Painter_settings : public Storage {
 public:
     void draw_settings()
