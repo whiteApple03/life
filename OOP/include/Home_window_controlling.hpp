@@ -6,7 +6,7 @@
 #include "Settings_renderer.hpp"
 // #include "Settings_renderer.hpp"
 
-extern Map_config map_config;
+// extern Map_config map_config;
 
 class Home_window_controlling : public Controlling, public Painter, public Helper, public Logic {
 public:

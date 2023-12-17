@@ -9,7 +9,7 @@
 #include "Painter.hpp"
 // #include "Settings_renderer.hpp"
 
-extern Map_config map_config;
+// extern Map_config map_config;
 
 class Controlling {
     virtual void input_keyboard(sf::Event&){};

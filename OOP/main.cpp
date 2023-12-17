@@ -4,7 +4,6 @@
 #include "./include/Home_window_controlling.hpp"
 #include "./include/Map_renderer.hpp"
 
-class Input {};
 
 int main()
 {

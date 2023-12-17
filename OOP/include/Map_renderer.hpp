@@ -6,11 +6,9 @@
 #include "./Renderer.hpp"
 #include "Painter.hpp"
 
-extern Map_config map_config;
 
 class Map_renderer : public Renderer, public Helper, public Adapter, public Painter {
 private:    
-
 
 public:
     Map_renderer(sf::RenderWindow& window, int window_x, int window_y)

@@ -3,9 +3,9 @@
 
 #include "../configurate/map_config.hpp"
 
-extern Map_config map_config;
+// extern Map_config map_config;
 
-class Adapter {
+class Adapter : public Storage {
 protected:
     void calculate_cell_size()
     {

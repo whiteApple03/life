@@ -2,9 +2,9 @@
 
 #include "../configurate/map_config.hpp"
 
-extern Map_config map_config;
+// extern Map_config map_config;
 
-class Logic {
+class Logic : public Storage {
 protected:
     template <typename T1, typename T2>
     int counting_live_cells(Field_t& field, T1 i, T2 k)

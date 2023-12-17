@@ -1,3 +1,3 @@
-#include "./configurate/map_config.hpp"
+// #include "./configurate/map_config.hpp"
 
-Map_config map_config;
+// Map_config map_config;

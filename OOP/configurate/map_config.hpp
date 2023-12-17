@@ -27,7 +27,6 @@ struct Settings {
                "enter - to chose property and then enter to accept property\ndown, Up - to "
                "control\nM - to accept changes"};
     bool is_changed = false;
-
 };
 
 class Map_config {
@@ -51,19 +50,27 @@ public:
     int delay_between_changed_generations = 1000;
     int64_t cur_time;
 
-
-
     // ~Map_config() {
     //     clear_matrix(field.field, field.sizeY);
     //     delete live_cell_sum;
     //     delete &(settings.order);
     //     delete &(settings.property);
     // }
-    private:
-        // void clear_matrix(bool **a, int n) {
-        //     for(int i = 0; i < n; i++) {
-        //         delete a[i];
-        //     }
-        // }
-        
+private:
+    // void clear_matrix(bool **a, int n) {
+    //     for(int i = 0; i < n; i++) {
+    //         delete a[i];
+    //     }
+    // }
 };
+
+class Storage {
+public:
+    Storage(){};
+
+protected:
+    static Map_config map_config;
+
+private:
+};
+Map_config Storage::map_config;

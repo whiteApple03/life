@@ -2,9 +2,9 @@
 
 #include "../configurate/map_config.hpp"
 
-extern Map_config map_config;
+// extern Map_config map_config;
 
-class Helper {
+class Helper : public Storage {
 protected:
     void allocate_memory_for_field(Field_t& map)
     {

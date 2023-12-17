@@ -3,7 +3,7 @@
 #include "Painter_settings.hpp"
 #include "Settings_window_controlling.hpp"
 
-extern Map_config map_config;
+// extern Map_config map_config;
 
 class Settings_renderer : public Settings_window_controlling {
 public:
