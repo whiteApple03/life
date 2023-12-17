@@ -30,4 +30,11 @@ protected:
         map_config.input_mode = false;
         map_config.settings_mode = false;
     }
+
+    void setSettingMode()
+    {
+        map_config.game_mode = false;
+        map_config.input_mode = false;
+        map_config.settings_mode = true;
+    }
 };

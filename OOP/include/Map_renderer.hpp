@@ -9,7 +9,9 @@
 extern Map_config map_config;
 
 class Map_renderer : public Renderer, public Helper, public Adapter, public Painter {
-private:
+private:    
+
+
 public:
     Map_renderer(sf::RenderWindow& window, int window_x, int window_y)
     {
@@ -31,6 +33,30 @@ public:
         allocate_memory_for_field(map_config.field);
         display();
     }
+    Map_renderer(sf::RenderWindow& window)
+    {
+        map_config.window_x = 1000;
+        map_config.window_y = 1000;
+        window_p = &window;
+        map_config.window_p = &window;
+
+        window_p->setPosition(sf::Vector2i(0, 0));
+
+        map_config.field.sizeX = 50;
+        map_config.field.sizeY = 50;
+        map_config.input_mode = true;
+        map_config.game_mode = false;
+        map_config.settings_mode = false;
+
+        calculate_cell_size();
+        setInputMode();
+        allocate_memory_for_field(map_config.field);
+        display();
+    }
+
+    // ~Map_renderer() {
+    //     delete &map_config;
+    // }
 
     void resized(int width, int height)
     {
